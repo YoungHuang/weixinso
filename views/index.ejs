@@ -1,11 +1,176 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html>
+  
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>微信导航</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style>
+      img.thumb {
+        height: 60px;
+      }
+      
+      .para {
+        border: 1px solid #D8D8D8
+      }
+      .para .thumbnail {
+       border: none; 
+      }
+      .para h3 {
+        text-align: center;
+        font-size:14px;
+        line-height: 1;
+      }
+      .subhead {
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+      .subheadh2 {
+        line-height: 20px;
+        padding-bottom:10px;
+      }
+      .para .caption {
+        padding: 0px;
+      }
+    </style>
   </head>
+  
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header class="navbar navbar-inverse" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">微信导航</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="../getting-started">首页</a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="请输入公众号...">
+            <button type="submit" class="btn btn-success">搜索</button>
+          </form>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+    <div class="container para">
+      <div class="row subhead">
+      <h2 class="subheadh2">热门微信公众号</h2>
+      </div>
+      <div class="row">
+      
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1218/e27ba3361f2f85b6918981054482c85b.png!160">
+            <div class="caption">
+              <h3>畅游客</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1116/fd9a30c2cbb8c691098fae72f024f8ee.png!160">
+            <div class="caption">
+              <h3>生活志</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2013/0107/5448e3b69531d1e2df3259f0a19ebb2a.jpg!160">
+            <div class="caption">
+              <h3>朗阁英语</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="row">
+      
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1218/e27ba3361f2f85b6918981054482c85b.png!160">
+            <div class="caption">
+              <h3>畅游客</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1116/fd9a30c2cbb8c691098fae72f024f8ee.png!160">
+            <div class="caption">
+              <h3>生活志</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2013/0107/5448e3b69531d1e2df3259f0a19ebb2a.jpg!160">
+            <div class="caption">
+              <h3>朗阁英语</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+          <div class="thumbnail">
+            <img class="thumb" data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2014/0125/843eec5a8cef98c4792fd9ce0d8304f6.jpeg!160">
+            <div class="caption">
+              <h3>南方周末</h3>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    </div>
   </body>
 </html>
