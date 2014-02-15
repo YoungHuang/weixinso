@@ -2,9 +2,10 @@
  * Created by jiesun on 13-12-24.
  */
 
-var mongodb = require('./mongodb');
-var Schema = mongodb.mongoose.Schema;
-var WeiXinSoSchema = new Schema({
+var mongoose = require('./mongodb'),
+    Schema = mongoose.Schema;
+
+var WxPublicUserSchema = new Schema({
     id: {
         type: String,
         required: true,
@@ -24,12 +25,12 @@ var WeiXinSoSchema = new Schema({
     recordDate: Date,
     desc: String
 });
-var WeiXinServer = mongodb.mongoose.model("weixinserver", WeiXinSoSchema);
-var WeiXinMode  = mongodb.mongoose.model('weixinserver');
-exports.save = function(obj){
-  var server = new WeiXinServer(obj);
-  console.log('test11');
-  server.save(function(err){
+var WxPublicUser = mongoose.model("WxPublicUser", WxPublicUserSchema);
+
+exports.save = function(user){
+  var wxPublicUser = new WxPublicUser(user);
+
+  wxPublicUser.save(function(err){
     if(err){
       console.log('Save failed');
     }else{
@@ -39,8 +40,5 @@ exports.save = function(obj){
 };
 
 exports.findByIndex = function(id, callback){
-    return WeiXinMode.find({id: id}, callback);
+    return WxPublicUser.find({id: id}, callback);
 };
-
-
-
