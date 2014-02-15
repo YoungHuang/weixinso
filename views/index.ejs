@@ -52,7 +52,7 @@
               <a href="../getting-started">首页</a>
             </li>
           </ul>
-          <form class="navbar-form navbar-right" action='/upload'>
+          <form class="navbar-form navbar-right" action='/search'>
             <input type="text" class="form-control" placeholder="请输入公众号...">
             <button type="submit" class="btn btn-success">搜索</button>
           </form>
@@ -65,29 +65,35 @@
       <h2 class="subheadh2">热门微信公众号</h2>
       </div>
       <div class="row">
-        <%  %>
+        <%  var i;
+            for (i = 0; i < 6; i++) {
+              var user = wxPublicUsers[i];
+        %>
         <div class="col-xs-6 col-md-2">
           <div class="thumbnail">
-            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1218/e27ba3361f2f85b6918981054482c85b.png!160">
+            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
             <div class="caption">
-              <h3>畅游客</h3>
+              <h3><%= user.id %></h3>
             </div>
           </div>
         </div>
-
+        <% } %>
       </div>
       
       <div class="row">
-      
+        <%  var i;
+            for (i = 5; i < 12; i++) {
+              var user = wxPublicUsers[i];
+        %>
         <div class="col-xs-6 col-md-2">
           <div class="thumbnail">
-            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="http://img.juweixin.com/static/uploads/2012/1218/e27ba3361f2f85b6918981054482c85b.png!160">
+            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
             <div class="caption">
-              <h3>畅游客</h3>
+              <h3><%= user.id %></h3>
             </div>
           </div>
         </div>
-
+        <% } %>
       </div>
       
     </div>
