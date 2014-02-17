@@ -1,0 +1,81 @@
+<%- include header %>
+  </head>
+  
+  <body>
+    <header class="navbar navbar-inverse" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">微信导航</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="../getting-started">首页</a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="请输入公众号...">
+            <button type="submit" class="btn btn-success">搜索</button>
+          </form>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">创建微信公众号</h3>
+          </div>
+          <div class="panel-body para">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">微信号</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">账号类型</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="type">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">关键词</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="keyWord">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">微信描述</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3" id="desc"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">logo</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="logo">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">二维码</label>
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="qr">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">创建</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div><!--row-->
+          </div><!--panel-body-->
+        </div><!--panel-->
+    </div><!--container-->
+  </body>
+
+</html>
