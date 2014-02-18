@@ -9,6 +9,7 @@ module.exports = function(app){
     res.render('index', { title: '主页' });
   });
   app.get('/search', function(req, res){
+//    manager.save(req, res);
     manager.index(req, res)
   });
 }

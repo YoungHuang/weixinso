@@ -4,7 +4,8 @@
 var schema = require('./../../model/schema');
 
 exports.index = function(req, res){
-  var id = req.user.id;
+//  var id = req.user.id;
+  var id = "923456789";
   schema.findByIndex(id, function(err, result){
     if(err){
       console.log(err);
@@ -15,13 +16,10 @@ exports.index = function(req, res){
 };
 
 exports.save = function(req, res){
-  var user = req.user;
-  schema.save(user, function(err){
-    if(err){
-      console.log(err);
-      console.log('Save failed');
-    }else{
-      console.log('Save success');
-    }
-  });
+  var weixinServer = {};
+  weixinServer.id = '923456789';
+  weixinServer.picturePath = '/opt/picture/selfPicture';
+  weixinServer.qrPath = '/opt/picture/qrPicture';
+
+  schema.save(weixinServer);
 };

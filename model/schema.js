@@ -25,13 +25,12 @@ var WeiXinSoSchema = new Schema({
     desc: String
 });
 var WeiXinServer = mongodb.mongoose.model("weixinserver", WeiXinSoSchema);
-
-
-exports.save = function(obj, callback){
+var WeiXinMode  = mongodb.mongoose.model('weixinserver');
+exports.save = function(obj){
   var server = new WeiXinServer(obj);
+  console.log('test11');
   server.save(function(err){
     if(err){
-      callback(err);
       console.log('Save failed');
     }else{
       console.log('Save success');
@@ -40,8 +39,7 @@ exports.save = function(obj, callback){
 };
 
 exports.findByIndex = function(id, callback){
-    var weiXinMode  = this.model("weixinserver");
-    return weiXinMode.find({id: id}, callback);
+    return WeiXinMode.find({id: id}, callback);
 };
 
 
