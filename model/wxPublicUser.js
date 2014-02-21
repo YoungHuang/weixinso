@@ -2,8 +2,8 @@
  * Created by jiesun on 13-12-24.
  */
 
-var mongoose = require('./mongodb'),
-    Schema = mongoose.Schema;
+var mongodb = require('./mongodb'),
+    Schema = mongodb.mongoose.Schema;
 
 var WxPublicUserSchema = new Schema({
     id: {
@@ -11,6 +11,7 @@ var WxPublicUserSchema = new Schema({
         required: true,
         index: true
     },
+    name: String,
     picturePath: {
         type: String,
         required: true
@@ -25,7 +26,7 @@ var WxPublicUserSchema = new Schema({
     recordDate: Date,
     desc: String
 });
-var WxPublicUser = mongoose.model("WxPublicUser", WxPublicUserSchema);
+var WxPublicUser = mongodb.mongoose.model("WxPublicUser", WxPublicUserSchema);
 
 exports.save = function(user){
   var wxPublicUser = new WxPublicUser(user);
@@ -42,3 +43,8 @@ exports.save = function(user){
 exports.findByIndex = function(id, callback){
     return WxPublicUser.find({id: id}, callback);
 };
+
+exports.findAll = function(callback){
+  return WxPublicUser.find(callback);
+};
+
