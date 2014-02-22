@@ -3,10 +3,6 @@
       img.thumb {
         height: 60px;
       }
-      
-      .para {
-        border: 1px solid #D8D8D8
-      }
       .para .thumbnail {
        border: none; 
       }
@@ -14,16 +10,6 @@
         text-align: center;
         font-size:14px;
         line-height: 1;
-      }
-      .subhead {
-        background-color: #f8f8f8;
-        border-color: #e7e7e7;
-        margin-bottom: 10px;
-        padding-left: 10px;
-      }
-      .subheadh2 {
-        line-height: 20px;
-        padding-bottom:10px;
       }
       .para .caption {
         padding: 0px;
@@ -51,43 +37,44 @@
       </div>
     </header>
     <div class="container">
-    <div class="container para">
-      <div class="row subhead">
-      <h2 class="subheadh2">热门微信公众号</h2>
-      </div>
-      <div class="row">
-        <%  var i;
-            for (i = 0; i < 6; i++) {
-              var user = wxPublicUsers[i];
-        %>
-        <div class="col-xs-6 col-md-2">
-          <div class="thumbnail">
-            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
-            <div class="caption">
-              <h3><%= user.id %></h3>
-            </div>
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">热门微信公众号</h3>
           </div>
-        </div>
-        <% } %>
-      </div>
-      
-      <div class="row">
-        <%  var i;
-            for (i = 5; i < 12; i++) {
-              var user = wxPublicUsers[i];
-        %>
-        <div class="col-xs-6 col-md-2">
-          <div class="thumbnail">
-            <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
-            <div class="caption">
-              <h3><%= user.id %></h3>
-            </div>
-          </div>
-        </div>
-        <% } %>
-      </div>
-      
-    </div>
-    </div>
+          <div class="panel-body para">
+            <div class="row">
+              <%  var i;
+                  for (i = 0; i < 6; i++) {
+                    var user = wxPublicUsers[i];
+              %>
+              <div class="col-xs-6 col-md-2">
+                <div class="thumbnail">
+                  <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
+                  <div class="caption">
+                    <h3><%= user.id %></h3>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div><!--row-->
+            
+            <div class="row">
+              <%  var i;
+                  for (i = 5; i < 12; i++) {
+                    var user = wxPublicUsers[i];
+              %>
+              <div class="col-xs-6 col-md-2">
+                <div class="thumbnail">
+                  <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
+                  <div class="caption">
+                    <h3><%= user.id %></h3>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div><!--row-->
+          </div><!--panel-body-->
+        </div><!--panel-->
+    </div><!--container-->
   </body>
 </html>
