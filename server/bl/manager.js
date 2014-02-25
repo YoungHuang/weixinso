@@ -16,12 +16,16 @@ exports.index = function(req, res){
 };
 
 exports.save = function(req, res){
-  var weixinServer = {};
-  weixinServer.id = '923456789';
-  weixinServer.name = 'test';
-  weixinServer.picturePath = '/opt/picture/selfPicture';
-  weixinServer.qrPath = '/opt/picture/qrPicture';
-  wxPublicUser.save(weixinServer);
+  var i;
+  for(i=0; i<20; i++){
+    var weixinServer = {};
+    weixinServer.id = '123456';
+    weixinServer.name = '知名疯子';
+    weixinServer.picturePath = '/upload/selfPicture/123456self.jpg';
+    weixinServer.qrPath = '/upload/qrPicture/123456qr.jpg';
+    wxPublicUser.save(weixinServer);
+  }
+
 };
 
 exports.findAll = function(req, res){
