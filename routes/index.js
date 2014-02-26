@@ -13,4 +13,9 @@ module.exports = function(app){
     manager.save(req, res);
 //    manager.index(req, res);
   });
+
+  app.get('/detail/:wid',function(req, res){
+    manager.index(req, res);
+  });
 }
+

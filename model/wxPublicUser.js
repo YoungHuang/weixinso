@@ -6,11 +6,6 @@ var mongodb = require('./mongodb'),
     Schema = mongodb.mongoose.Schema;
 
 var WxPublicUserSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
-        index: true
-    },
     name: String,
     picturePath: {
         type: String,
@@ -22,6 +17,8 @@ var WxPublicUserSchema = new Schema({
     },
     primevalNumber: String,
     simpleNumber: String,
+    type: String,
+    webAddress: String,
     keyWord: String,
     recordDate: Date,
     desc: String
@@ -41,7 +38,7 @@ exports.save = function(user){
 };
 
 exports.findByIndex = function(id, callback){
-    return WxPublicUser.find({id: id}, callback);
+    return WxPublicUser.find({_id: id}, callback);
 };
 
 exports.findAll = function(callback){

@@ -42,33 +42,37 @@
     <div class="container">
       <div class="row">
         <div class="col-md-1">
-          <img class="img-thumbnaid details-logo" alt="default" src="http://www.weixinju.com/uploadfile/2012/1009/20121009045208675.jpg">
+          <img class="img-thumbnaid details-logo" alt="default" src="<%= wxPublicUser[0].picturePath %>">
         </div>
         <div class="col-md-6">
-          <h3 class="details-title">朗阁培训中心</h3>
+          <h3 class="details-title"><%= wxPublicUser[0].name %></h3>
           <dl class="dl-horizontal">
             <dt>微信号：</dt>
-            <dd>gh_91f32369e93e</dd>
+            <dd><%= wxPublicUser[0].name %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>账号类型：</dt>
-            <dd>订阅号</dd>
+            <dd><%= wxPublicUser[0].type %></dd>
           </dl>
           <dl class="dl-horizontal">
-            <dt>地区：</dt>
-            <dd>上海市 > 徐汇区</dd>
+            <dt>微信号：</dt>
+            <dd><%= wxPublicUser[0].simpleNumber %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>关键词：</dt>
+            <dd><%= wxPublicUser[0].keyWord %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>网站地址：</dt>
-            <dd><a href="http://www.longre.cn/">http://www.longre.cn/</a></dd>
+            <dd><a href="<%= wxPublicUser[0].webAddress %>"><%= wxPublicUser[0].webAddress %></a></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>收录时间：</dt>
-            <dd>2012-10-09 16:54:34</dd>
+            <dd><%= wxPublicUser[0].recordDate %></dd>
           </dl>
         </div>
         <div class="col-md-5">
-          <img class="img-thumbnaid details-code" alt="default" src="http://www.weixinju.com/uploadfile/2012/1009/20121009045221545.jpg">
+          <img class="img-thumbnaid details-code" alt="default" src="<%= wxPublicUser[0].qrPath %>">
           <p class="code_label">二维码扫描订阅</p>
         </div>
       </div>
@@ -80,7 +84,7 @@
           </div>
           <div class="panel-body">
             <p class="detail-desc">
-            朗阁培训中心，朗阁教育集团旗下英语教育旗舰品牌。成立于1999年，是中国最大的雅思、新托福培训基地之一。总部位于上海，目前在上海、北京、南京、无锡 、苏州、常州、镇江、青岛、济南、杭州、宁波、温州、厦门、福州、广州、成都、重庆、武汉、海口、长沙、兰州、桂林、南昌、大连、扬州、南宁和石家庄等28个城市拥有至少50个校区，总教学面积超过80000平方米，每年学员数量超过100000人，形成完善的全国教学服务网络。
+                <%= wxPublicUser[0].desc %>
             </p>
           </div>
         </div>

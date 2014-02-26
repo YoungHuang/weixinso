@@ -60,14 +60,14 @@
             
             <div class="row">
               <%  var i;
-                  for (i = 5; i < 12; i++) {
+                  for (i = 6; i < 12; i++) {
                     var user = wxPublicUsers[i];
               %>
               <div class="col-xs-6 col-md-2">
                 <div class="thumbnail">
                   <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.picturePath %>">
                   <div class="caption">
-                    <h3><%= user.name %></h3>
+                    <h3><a  class='' href='/detail/<%= user._id %>'><%= user.name %></a></h3>
                   </div>
                 </div>
               </div>
