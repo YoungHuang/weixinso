@@ -37,7 +37,7 @@ exports.save = function(req, res){
 
 };
 
-exports.findAll = function(req, res){
+exports.findAllForIndexPage = function(req, res){
   wxPublicUser.findAll(function(err, result){
     if(err){
       console.log(err);
@@ -49,4 +49,24 @@ exports.findAll = function(req, res){
     }
    }
   );
-}
+};
+
+exports.findByName = function(req, res){
+  var name = req.body.publicStr.trim();
+  var query={};
+  if(name) {
+    query['name']=new RegExp(name);
+  }
+  wxPublicUser.findByName(query, function(err, result){
+      if(err){
+        console.log(err);
+      }else{
+        res.render('results', {
+          title: '主页',
+          wxPublicUsers: result
+        });
+      }
+    }
+  );
+};
+

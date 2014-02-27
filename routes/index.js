@@ -6,16 +6,19 @@ var manager = require('./../server/bl/manager');
 
 module.exports = function(app){
   app.get('/', function(req, res){
-    manager.findAll(req, res);
+    manager.findAllForIndexPage(req, res);
   });
 
-  app.get('/search', function(req, res){
+  app.get('/add', function(req, res){
     manager.save(req, res);
-//    manager.index(req, res);
   });
 
   app.get('/detail/:wid',function(req, res){
     manager.index(req, res);
+  });
+
+  app.post('/search', function(req, res){
+    manager.findByName(req, res);
   });
 }
 

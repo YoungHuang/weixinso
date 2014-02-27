@@ -45,3 +45,6 @@ exports.findAll = function(callback){
   return WxPublicUser.find(callback);
 };
 
+exports.findByName = function(query, callback){
+  return WxPublicUser.find(query,callback);
+};
