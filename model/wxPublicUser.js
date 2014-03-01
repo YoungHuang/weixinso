@@ -7,6 +7,8 @@ var mongodb = require('./mongodb'),
 
 var WxPublicUserSchema = new Schema({
     name: String,
+    wxNumber: String,
+    desc: String,
     picturePath: {
         type: String,
         required: true
@@ -15,13 +17,8 @@ var WxPublicUserSchema = new Schema({
         type: String,
         required: true
     },
-    primevalNumber: String,
-    simpleNumber: String,
-    type: String,
-    webAddress: String,
-    keyWord: String,
-    recordDate: Date,
-    desc: String
+    tags: {type: [String], index: true},
+    createDate: Date
 });
 var WxPublicUser = mongodb.mongoose.model("WxPublicUser", WxPublicUserSchema);
 
