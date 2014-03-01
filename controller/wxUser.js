@@ -4,15 +4,14 @@
 var fs = require('fs'),
     wxPublicUser = require('./../model/wxPublicUser');
 
-exports.index = function(req, res){
+exports.details = function(req, res){
   var id = req.params.wid;
-  wxPublicUser.findByIndex(id, function(err, result){
+  wxPublicUser.findOneById(id, function(err, wxuser){
     if(err){
       console.log(err);
     }else{
       res.render('wxuser/details', {
-        title: '主页',
-        wxPublicUser: result
+        wxPublicUser: wxuser
       });
     }
   });
@@ -39,7 +38,6 @@ exports.create = function(req, res) {
   var tmpLogoPath = req.files.logo.path;
   var tmpQrPath = req.files.qr.path;
 
-console.log(req.files.logo);
   var targetLogoPath = 'pubilc/upload/logoPicture/' + req.files.logo.name;
   fs.renameSync(tmpLogoPath, targetLogoPath);
   fs.unlinkSync(tmpLogoPath);
@@ -59,7 +57,7 @@ console.log(req.files.logo);
   };
   wxPublicUser.save(user, function(err, wxuser) {
     if (err) {
-      return res.render('wxuser/create', {
+      return res.render('wxuser/edit', {
         user: user
       });
     }
@@ -67,13 +65,27 @@ console.log(req.files.logo);
   });
 };
 
+exports.edit = function(req, res) {
+  var id = req.params.id;
+
+  wxPublicUser.findOneById(id, function(err, wxuser){
+    if(err){
+      return res.redirect('/');
+    }
+
+    res.render('wxuser/edit', {
+      title: '编辑微信公众号',
+      user: wxuser
+    });
+  });
+}
+
 exports.findAllForIndexPage = function(req, res){
   wxPublicUser.findAll(function(err, result){
     if(err){
       console.log(err);
     }else{
       res.render('index', {
-        title: '主页',
         wxPublicUsers: result
       });
     }
@@ -81,8 +93,8 @@ exports.findAllForIndexPage = function(req, res){
   );
 };
 
-exports.findByName = function(req, res){
-  var name = req.body.publicStr.trim();
+exports.search = function(req, res){
+  var name = req.body.keywords.trim();
   var query={};
   if(name) {
     query['name']=new RegExp(name);
@@ -92,7 +104,6 @@ exports.findByName = function(req, res){
         console.log(err);
       }else{
         res.render('wxuser/results', {
-          title: '主页',
           wxPublicUsers: result
         });
       }

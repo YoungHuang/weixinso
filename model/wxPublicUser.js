@@ -35,8 +35,8 @@ exports.save = function(user, callback){
   });
 };
 
-exports.findByIndex = function(id, callback){
-    return WxPublicUser.find({_id: id}, callback);
+exports.findOneById = function(id, callback){
+    return WxPublicUser.findOne({_id: id}, callback);
 };
 
 exports.findAll = function(callback){

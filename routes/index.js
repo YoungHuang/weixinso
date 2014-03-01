@@ -13,17 +13,20 @@ module.exports = function(app){
     wxUser.generate(req, res);
   });
 
-  app.get('/wxuser/detail/:wid',function(req, res){
-    wxUser.index(req, res);
+  app.get('/wxuser/details/:wid',function(req, res){
+    wxUser.details(req, res);
   });
 
-  app.post('/search', function(req, res){
-    wxUser.findByName(req, res);
+  app.post('/wxuser/search', function(req, res){
+    wxUser.search(req, res);
   });
 
   // 创建公众号
   app.get('/wxuser/create', function(req, res) {
-    res.render('wxuser/create', {});
+    res.render('wxuser/edit', {
+      title: '创建微信公众号',
+      user: {}
+    });
   });
   app.post('/wxuser/create', function(req, res) {
     wxUser.create(req, res);
@@ -35,10 +38,10 @@ module.exports = function(app){
   });
 
   // 编辑公众号
-  app.get('/wxuser/edit', function(req, res) {
-
+  app.get('/wxuser/edit/:id', function(req, res) {
+    wxUser.edit(req, res);
   });
-  app.post('/wxuser/edit', function(req, res) {
+  app.post('/wxuser/edi/:id', function(req, res) {
     
   });
 

@@ -25,37 +25,37 @@
     <div class="container">
       <div class="row">
         <div class="col-md-1">
-          <img class="img-thumbnaid details-logo" alt="default" src="<%= wxPublicUser[0].picturePath %>">
+          <img class="img-thumbnaid details-logo" alt="default" src="<%= wxPublicUser.picturePath %>">
         </div>
         <div class="col-md-6">
-          <h3 class="details-title"><%= wxPublicUser[0].name %></h3>
+          <h3 class="details-title"><%= wxPublicUser.name %></h3>
           <dl class="dl-horizontal">
             <dt>微信号：</dt>
-            <dd><%= wxPublicUser[0].name %></dd>
+            <dd><%= wxPublicUser.name %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>账号类型：</dt>
-            <dd><%= wxPublicUser[0].type %></dd>
+            <dd><%= wxPublicUser.type %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>微信号：</dt>
-            <dd><%= wxPublicUser[0].simpleNumber %></dd>
+            <dd><%= wxPublicUser.simpleNumber %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>关键词：</dt>
-            <dd><%= wxPublicUser[0].keyWord %></dd>
+            <dd><%= wxPublicUser.keyWord %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>网站地址：</dt>
-            <dd><a href="<%= wxPublicUser[0].webAddress %>"><%= wxPublicUser[0].webAddress %></a></dd>
+            <dd><a href="<%= wxPublicUser.webAddress %>"><%= wxPublicUser.webAddress %></a></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>收录时间：</dt>
-            <dd><%= wxPublicUser[0].recordDate %></dd>
+            <dd><%= wxPublicUser.recordDate %></dd>
           </dl>
         </div>
         <div class="col-md-5">
-          <img class="img-thumbnaid details-code" alt="default" src="<%= wxPublicUser[0].qrPath %>">
+          <img class="img-thumbnaid details-code" alt="default" src="<%= wxPublicUser.qrPath %>">
           <p class="code_label">二维码扫描订阅</p>
         </div>
       </div>
@@ -67,7 +67,7 @@
           </div>
           <div class="panel-body">
             <p class="detail-desc">
-                <%= wxPublicUser[0].desc %>
+                <%= wxPublicUser.desc %>
             </p>
           </div>
         </div>
