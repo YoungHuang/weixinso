@@ -22,14 +22,15 @@ var WxPublicUserSchema = new Schema({
 });
 var WxPublicUser = mongodb.mongoose.model("WxPublicUser", WxPublicUserSchema);
 
-exports.save = function(user){
+exports.save = function(user, callback){
   var wxPublicUser = new WxPublicUser(user);
 
-  wxPublicUser.save(function(err){
+  wxPublicUser.save(function(err, user){
     if(err){
       console.log('Save failed');
+      callback(err);
     }else{
-      console.log('Save success');
+      callback(err, user);
     }
   });
 };

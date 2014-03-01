@@ -13,7 +13,7 @@ module.exports = function(app){
     wxUser.generate(req, res);
   });
 
-  app.get('/detail/:wid',function(req, res){
+  app.get('/wxuser/detail/:wid',function(req, res){
     wxUser.index(req, res);
   });
 

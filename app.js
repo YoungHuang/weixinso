@@ -16,7 +16,7 @@ app.use(express.logger('dev'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.bodyParser({keepExtensions: true, uploadDir: './public/temp'}));
+app.use(express.bodyParser({keepExtensions: true, uploadDir: './public/upload'}));
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));

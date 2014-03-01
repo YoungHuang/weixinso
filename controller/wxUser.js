@@ -39,6 +39,7 @@ exports.create = function(req, res) {
   var tmpLogoPath = req.files.logo.path;
   var tmpQrPath = req.files.qr.path;
 
+console.log(req.files.logo);
   var targetLogoPath = 'pubilc/upload/logoPicture/' + req.files.logo.name;
   fs.renameSync(tmpLogoPath, targetLogoPath);
   fs.unlinkSync(tmpLogoPath);
@@ -52,11 +53,18 @@ exports.create = function(req, res) {
     wxNumber: req.body.wxNumber,
     desc: req.body.desc,
     logoPath: '/upload/logoPicture/' + req.files.logo.name,
-    qrPath: 'upload/qrPicture/' + req.files.qr.name,
+    qrPath: '/upload/qrPicture/' + req.files.qr.name,
     tags: [req.body.tag1, req.body.tag2, req.body.tag3],
     createDate: date
   };
-  wxPublicUser.save(user);
+  wxPublicUser.save(user, function(err, wxuser) {
+    if (err) {
+      return res.render('wxuser/create', {
+        user: user
+      });
+    }
+    res.redirect('/wxuser/detail/' + wxuser._id);
+  });
 };
 
 exports.findAllForIndexPage = function(req, res){
