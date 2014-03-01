@@ -9,7 +9,7 @@ var WxPublicUserSchema = new Schema({
     name: String,
     wxNumber: String,
     desc: String,
-    picturePath: {
+    logoPath: {
         type: String,
         required: true
     },

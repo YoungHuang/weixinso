@@ -1,7 +1,8 @@
 /**
  * Created by jiesun on 14-2-17.
  */
-var wxPublicUser = require('./../../model/wxPublicUser');
+var fs = require('fs'),
+    wxPublicUser = require('./../model/wxPublicUser');
 
 exports.index = function(req, res){
   var id = req.params.wid;
@@ -22,13 +23,9 @@ exports.generate = function(req, res){
   for(i=0; i<20; i++){
     var weixinServer = {};
     weixinServer.name = '知名疯子';
-    weixinServer.primevalNumber = 'gh_c0b973c06195';
-    weixinServer.simpleNumber = 'zhimingfengzi';
-    weixinServer.webAddress = 'http://www.guodagongyi.com'
-    weixinServer.keyWord = '公益 策划 营销 媒体 新媒体 聚微信 微信导航';
-    weixinServer.type = '订阅号';
-    weixinServer.recordDate = '2012-10-09 16:54:34';
-    weixinServer.picturePath = '/upload/selfPicture/123456self.jpg';
+    weixinServer.wxNumber = 'gh_c0b973c06195';
+    weixinServer.createDate = '2012-10-09 16:54:34';
+    weixinServer.logoPath = '/upload/logoPicture/123456self.jpg';
     weixinServer.qrPath = '/upload/qrPicture/123456qr.jpg';
     weixinServer.desc = '知名疯子，最好的正能量自媒体平台。由中央电视台《公益的力量》栏目媒体合作负责人小疯子运营。' +
       '每日分享自己读到看到或者大家推荐的好文、好书、好电影等，偶尔也和你疯言疯语，乐此不彼。';
@@ -39,12 +36,23 @@ exports.generate = function(req, res){
 
 exports.create = function(req, res) {
   var date = new Date();
+  var tmpLogoPath = req.files.logo.path;
+  var tmpQrPath = req.files.qr.path;
+
+  var targetLogoPath = 'pubilc/upload/logoPicture/' + req.files.logo.name;
+  fs.renameSync(tmpLogoPath, targetLogoPath);
+  fs.unlinkSync(tmpLogoPath);
+
+  var targetQrPath = 'pubilc/upload/qrPicture/' + req.files.qr.name;
+  fs.renameSync(tmpQrPath, targetQrPath);
+  fs.unlinkSync(tmpQrPath);
+
   var user = {
     name: req.body.name,
     wxNumber: req.body.wxNumber,
     desc: req.body.desc,
-    picturePath: ,
-    qrPath: ,
+    logoPath: '/upload/logoPicture/' + req.files.logo.name,
+    qrPath: 'upload/qrPicture/' + req.files.qr.name,
     tags: [req.body.tag1, req.body.tag2, req.body.tag3],
     createDate: date
   };

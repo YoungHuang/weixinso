@@ -1,8 +1,8 @@
-<%- include header %>
+<%- include ../header %>
   </head>
   
   <body>
-    <%- include nav %>
+    <%- include ../nav %>
     <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -11,47 +11,47 @@
           <div class="panel-body para">
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" enctype='multipart/form-data'>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">昵称</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="name">
+                      <input type="text" class="form-control" name="name">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">微信号</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="wxNumber">
+                      <input type="text" class="form-control" name="wxNumber">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">标签</label>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control" id="tag1">
+                      <input type="text" class="form-control" name="tag1">
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control" id="tag2">
+                      <input type="text" class="form-control" name="tag2">
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" class="form-control" id="tag3">
+                      <input type="text" class="form-control" name="tag3">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">微信描述</label>
                     <div class="col-sm-10">
-                      <textarea class="form-control" rows="3" id="desc"></textarea>
+                      <textarea class="form-control" rows="3" name="desc"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">logo</label>
                     <div class="col-sm-10">
-                      <input type="file" class="form-control" id="logo">
+                      <input type="file" class="form-control" name="logo">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">二维码</label>
                     <div class="col-sm-10">
-                      <input type="file" class="form-control" id="qr">
+                      <input type="file" class="form-control" name="qr">
                     </div>
                   </div>
                   <div class="form-group">

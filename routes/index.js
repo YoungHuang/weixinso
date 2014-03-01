@@ -23,10 +23,10 @@ module.exports = function(app){
 
   // 创建公众号
   app.get('/wxuser/create', function(req, res) {
-    res.render('/wxuser/create', {});
+    res.render('wxuser/create', {});
   });
   app.post('/wxuser/create', function(req, res) {
-    
+    wxUser.create(req, res);
   });
 
   // 公众号列表
