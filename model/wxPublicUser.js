@@ -36,6 +36,14 @@ exports.save = function(user, callback){
   });
 };
 
+exports.update = function(user, callback) {
+
+};
+
+exports.get = function(page, count, callback) {
+
+};
+
 exports.findOneById = function(id, callback){
     return WxPublicUser.findOne({_id: id}, callback);
 };
@@ -46,4 +54,8 @@ exports.findAll = function(callback){
 
 exports.findByName = function(query, callback){
   return WxPublicUser.find(query,callback);
+};
+
+exports.deleteOneById = function(query, callback){
+
 };

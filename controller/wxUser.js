@@ -33,6 +33,23 @@ exports.generate = function(req, res){
 
 };
 
+exports.list = function(req, res) {
+  var page = req.query.p ? parseInt(req.query.p) : 1;
+  var count = req.query.c ? parseInt(req.query.c) : 10;
+  wxPublicUser.get(page, count, function(err, wxuserList, total) {
+    if(err){
+      return res.redirect('/');
+    }
+
+    res.render('wxuser/list', {
+        wxusers: wxuserList,
+        page: page,
+        isFirstPage: (page -1) == 0,
+        isLastPage: ((page -1) * count + wxuserList.length) == total
+    });
+  });
+};
+
 exports.create = function(req, res) {
   var date = new Date();
   var tmpLogoPath = req.files.logo.path;
@@ -65,16 +82,56 @@ exports.create = function(req, res) {
   });
 };
 
+exports.show = function(req, res) {
+  var id = req.params.id;
+
+  wxPublicUser.findOneById(id, function(err, wxuser) {
+    if(err){
+      return res.redirect('/wxuser/list');
+    }
+
+    res.render('wxuser/show', {
+      user: wxuser
+    });
+  });
+};
+
+exports.delete = function(req, res) {
+  var id = req.params.id;
+
+  wxPublicUser.deleteOneById(id, function(err) {
+    res.redirect('/wxuser/list');
+  });
+};
+
 exports.edit = function(req, res) {
   var id = req.params.id;
 
-  wxPublicUser.findOneById(id, function(err, wxuser){
+  wxPublicUser.findOneById(id, function(err, wxuser) {
     if(err){
-      return res.redirect('/');
+      return res.redirect('/wxuser/list');
     }
 
     res.render('wxuser/edit', {
       title: '编辑微信公众号',
+      user: wxuser
+    });
+  });
+}
+
+exports.update = function(req, res) {
+  var wxuser = {
+    name: req.body.name,
+    wxNumber: req.body.wxNumber,
+    desc: req.body.desc,
+    tags: [req.body.tag1, req.body.tag2, req.body.tag3]
+  };
+  wxPublicUser.update(wxuser, function(err, wxuser) {
+    if(err){
+      return res.redirect('/wxuser/list');
+    }
+    res.render('wxuser/show', {
+      title: '微信公众号详情',
       user: wxuser
     });
   });

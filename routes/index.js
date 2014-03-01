@@ -32,9 +32,19 @@ module.exports = function(app){
     wxUser.create(req, res);
   });
 
+  // 公众号详情
+  app.get('/wxuser/show/:id', function(req, res) {
+    wxUser.show(req, res);
+  });
+
+  // 删除公众号
+  app.get('/wxuser/delete/:id', function(req, res) {
+    wxUser.delete(req, res);
+  });
+
   // 公众号列表
   app.get('/wxuser/list', function(req, res) {
-
+    wxUser.list(req, res);
   });
 
   // 编辑公众号
@@ -42,7 +52,7 @@ module.exports = function(app){
     wxUser.edit(req, res);
   });
   app.post('/wxuser/edi/:id', function(req, res) {
-    
+    wxUser.update(req, rest);
   });
 
   // 创建用户
@@ -51,6 +61,11 @@ module.exports = function(app){
   });
   app.post('/user/create', function(req, res) {
     
+  });
+
+  // 用户详情
+  app.get('/user/show/:id', function(req, res) {
+
   });
 
   // 用户列表
@@ -66,8 +81,9 @@ module.exports = function(app){
     
   });
 
-  app.get('/search', function(req, res) {
-    wxUser.generate(req,res);
+  // 删除用户
+  app.get('/user/delete/:id', function(req, res) {
+
   });
 }
 
