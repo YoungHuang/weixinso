@@ -1,14 +1,15 @@
 var mongodb = require('./mongodb'),
     Schema = mongodb.mongoose.Schema;
 
-var userSchema = new Schema({
-	name: {
+var postSchema = new Schema({
+	title: {
 	    type: String,
 	    required: true
 	},
-	password: String,
-	role: String,
+	content: String,
+	link: String,
+	favs:  Number,
 	createDate: Date
 });
 
-var User = mongodb.mongoose.model("User", userSchema);
+var Post = mongodb.mongoose.model("Post", postSchema);

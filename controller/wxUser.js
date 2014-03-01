@@ -9,7 +9,7 @@ exports.index = function(req, res){
     if(err){
       console.log(err);
     }else{
-      res.render('details', {
+      res.render('wxuser/details', {
         title: '主页',
         wxPublicUser: result
       });
@@ -61,7 +61,7 @@ exports.findByName = function(req, res){
       if(err){
         console.log(err);
       }else{
-        res.render('results', {
+        res.render('wxuser/results', {
           title: '主页',
           wxPublicUsers: result
         });
