@@ -17,7 +17,7 @@ exports.index = function(req, res){
   });
 };
 
-exports.save = function(req, res){
+exports.generate = function(req, res){
   var i;
   for(i=0; i<20; i++){
     var weixinServer = {};
@@ -35,6 +35,20 @@ exports.save = function(req, res){
     wxPublicUser.save(weixinServer);
   }
 
+};
+
+exports.create = function(req, res) {
+  var date = new Date();
+  var user = {
+    name: req.body.name,
+    wxNumber: req.body.wxNumber,
+    desc: req.body.desc,
+    picturePath: ,
+    qrPath: ,
+    tags: [req.body.tag1, req.body.tag2, req.body.tag3],
+    createDate: date
+  };
+  wxPublicUser.save(user);
 };
 
 exports.findAllForIndexPage = function(req, res){

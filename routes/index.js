@@ -10,7 +10,7 @@ module.exports = function(app){
   });
 
   app.get('/add', function(req, res){
-    wxUser.save(req, res);
+    wxUser.generate(req, res);
   });
 
   app.get('/detail/:wid',function(req, res){
