@@ -52,23 +52,18 @@ exports.list = function(req, res) {
 
 exports.create = function(req, res) {
   var date = new Date();
-  var tmpLogoPath = req.files.logo.path;
-  var tmpQrPath = req.files.qr.path;
+  var logoPath = req.files.logo.path;
+  var qrPath = req.files.qr.path;
 
-  var targetLogoPath = 'pubilc/upload/logoPicture/' + req.files.logo.name;
-  fs.renameSync(tmpLogoPath, targetLogoPath);
-  fs.unlinkSync(tmpLogoPath);
-
-  var targetQrPath = 'pubilc/upload/qrPicture/' + req.files.qr.name;
-  fs.renameSync(tmpQrPath, targetQrPath);
-  fs.unlinkSync(tmpQrPath);
+  logoPath = '/upload' + logoPath.substring(logoPath.lastIndexOf('/'));
+  qrPath = '/upload' + qrPath.substring(qrPath.lastIndexOf('/'));
 
   var user = {
     name: req.body.name,
     wxNumber: req.body.wxNumber,
     desc: req.body.desc,
-    logoPath: '/upload/logoPicture/' + req.files.logo.name,
-    qrPath: '/upload/qrPicture/' + req.files.qr.name,
+    logoPath: logoPath,
+    qrPath: qrPath,
     tags: [req.body.tag1, req.body.tag2, req.body.tag3],
     createDate: date
   };
@@ -78,7 +73,7 @@ exports.create = function(req, res) {
         user: user
       });
     }
-    res.redirect('/wxuser/detail/' + wxuser._id);
+    res.redirect('/wxuser/show/' + wxuser._id);
   });
 };
 
@@ -91,7 +86,7 @@ exports.show = function(req, res) {
     }
 
     res.render('wxuser/show', {
-      user: wxuser
+      wxPublicUser: wxuser
     });
   });
 };
