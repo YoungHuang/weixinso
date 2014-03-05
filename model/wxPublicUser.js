@@ -30,6 +30,7 @@ exports.save = function(user, callback){
       console.log('Save failed');
       callback(err);
     }else{
+      console.log('Save success');
       callback(err, user);
     }
   });

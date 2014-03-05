@@ -65,5 +65,9 @@ module.exports = function(app){
   app.post('/user/edit', function(req, res) {
     
   });
+
+  app.get('/search', function(req, res) {
+    wxUser.generate(req,res);
+  });
 }
 
