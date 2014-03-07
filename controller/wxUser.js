@@ -5,7 +5,7 @@ var fs = require('fs'),
     wxPublicUser = require('./../model/wxPublicUser');
 
 exports.details = function(req, res){
-  var id = req.params.wid;
+  var id = req.params.id;
   wxPublicUser.findOneById(id, function(err, wxuser){
     if(err){
       console.log(err);
@@ -26,6 +26,7 @@ exports.generate = function(req, res){
     weixinServer.createDate = '2012-10-09 16:54:34';
     weixinServer.logoPath = '/upload/logoPicture/123456self.jpg';
     weixinServer.qrPath = '/upload/qrPicture/123456qr.jpg';
+    weixinServer.tags = ['媒体', '杂文', '']
     weixinServer.desc = '知名疯子，最好的正能量自媒体平台。由中央电视台《公益的力量》栏目媒体合作负责人小疯子运营。' +
       '每日分享自己读到看到或者大家推荐的好文、好书、好电影等，偶尔也和你疯言疯语，乐此不彼。';
     wxPublicUser.save(weixinServer);
@@ -93,9 +94,10 @@ exports.show = function(req, res) {
 
 exports.delete = function(req, res) {
   var id = req.params.id;
+  var page = req.query.p;
 
   wxPublicUser.deleteOneById(id, function(err) {
-    res.redirect('/wxuser/list');
+    res.redirect('/wxuser/list?p=' + page);
   });
 };
 
@@ -121,14 +123,11 @@ exports.update = function(req, res) {
     desc: req.body.desc,
     tags: [req.body.tag1, req.body.tag2, req.body.tag3]
   };
-  wxPublicUser.update(wxuser, function(err, wxuser) {
+  wxPublicUser.update(req.params.id, wxuser, function(err, wxuser) {
     if(err){
       return res.redirect('/wxuser/list');
     }
-    res.render('wxuser/show', {
-      title: '微信公众号详情',
-      user: wxuser
-    });
+    res.redirect('/wxuser/show/' + req.params.id);
   });
 }
 

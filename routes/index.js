@@ -13,7 +13,7 @@ module.exports = function(app){
     wxUser.generate(req, res);
   });
 
-  app.get('/wxuser/details/:wid',function(req, res){
+  app.get('/wxuser/details/:id',function(req, res){
     wxUser.details(req, res);
   });
 
@@ -51,8 +51,8 @@ module.exports = function(app){
   app.get('/wxuser/edit/:id', function(req, res) {
     wxUser.edit(req, res);
   });
-  app.post('/wxuser/edi/:id', function(req, res) {
-    wxUser.update(req, rest);
+  app.post('/wxuser/edit/:id', function(req, res) {
+    wxUser.update(req, res);
   });
 
   // 创建用户

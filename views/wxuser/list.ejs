@@ -1,4 +1,9 @@
 <%- include ../header %>
+  <script>
+    function disp_confirm() {
+      confirm("Press a button");
+    }
+  </script>
   </head>
   
   <body>
@@ -21,10 +26,10 @@
                   <tbody>
                     <% wxusers.forEach(function (wxuser, index) { %>
                       <tr>
-                        <td>wxuser.name</td>
+                        <td><%= wxuser.name %></td>
                         <td>
-                          <a href="<%= /edit/wxuser._id %>" class="btn btn-primary btn-sm" role="button">Edit</a>
-                          <a href="<%= /delete/wxuser._id %>" class="btn btn-danger btn-sm" role="button">Delete</a>
+                          <a href="edit/<%= wxuser._id %>" class="btn btn-primary btn-sm" role="button">Edit</a>
+                          <a href="delete/<%= wxuser._id %>?p=<%= page %>" class="btn btn-danger btn-sm" role="button" onclick="return confirm('确认删除？')">Delete</a>
                         </td>
                       </tr>
                     <% }) %>
@@ -34,7 +39,7 @@
             </div><!--row-->
             <div class="row">
               <div class="col-md-4 col-md-offset-4">
-                <%- include paging %>
+                <%- include ../paging %>
               </div>
             </div><!--row-->
           </div><!--panel-body-->

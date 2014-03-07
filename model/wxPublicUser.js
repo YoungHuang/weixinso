@@ -36,26 +36,60 @@ exports.save = function(user, callback){
   });
 };
 
-exports.update = function(user, callback) {
-
+exports.update = function(id, user, callback) {
+  WxPublicUser.update({
+    _id: id
+  }, {
+    $set : {
+      name: user.name,
+      wxNumber: user.wxNumber,
+      desc: user.desc,
+      tags: user.tags
+    }
+  }, function(err, wxuser) {
+    if(err){
+      callback(err);
+    } else{
+      callback(err, wxuser);
+    }
+  });
 };
 
 exports.get = function(page, count, callback) {
-
+  WxPublicUser.count({}, function(err, total) {
+    if (err) {
+      return callback(err);
+    }
+    WxPublicUser.find({}, null, {
+      skip: (page -1) * count,
+      limit: count
+    }, function(err, wxuserList) {
+      if (err) {
+        return callback(err);
+      }
+      callback(err, wxuserList, total);
+    });
+  });
 };
 
 exports.findOneById = function(id, callback){
-    return WxPublicUser.findOne({_id: id}, callback);
+    WxPublicUser.findOne({_id: id}, callback);
 };
 
 exports.findAll = function(callback){
-  return WxPublicUser.find(callback);
+  WxPublicUser.find(callback);
 };
 
-exports.findByName = function(query, callback){
-  return WxPublicUser.find(query,callback);
+exports.findByName = function(name, callback){
+  WxPublicUser.find(name,callback);
 };
 
-exports.deleteOneById = function(query, callback){
-
+exports.deleteOneById = function(id, callback){
+  WxPublicUser.findByIdAndRemove(id, function(err) {
+    if(err){
+      callback(err);
+    } else{
+      callback(err);
+    }
+  });
 };
