@@ -1,0 +1,42 @@
+<div class="form-group">
+  <label class="col-sm-2 control-label">昵称</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" name="name" value="<%= user.name || '' %>">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">微信号</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" name="wxNumber" value="<%= user.wxNumber || '' %>">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">标签</label>
+  <div class="col-sm-3">
+    <input type="text" class="form-control" name="tag1" value="<%= (user.tags && user.tags[0]) || '' %>">
+  </div>
+  <div class="col-sm-3">
+    <input type="text" class="form-control" name="tag2" value="<%= (user.tags && user.tags[1]) || '' %>">
+  </div>
+  <div class="col-sm-3">
+    <input type="text" class="form-control" name="tag3" value="<%= (user.tags && user.tags[2]) || '' %>">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">微信描述</label>
+  <div class="col-sm-10">
+    <textarea class="form-control" rows="3" name="desc"><%= user.desc || '' %></textarea>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">logo</label>
+  <div class="col-sm-10">
+    <input type="file" class="form-control" name="logo">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label">二维码</label>
+  <div class="col-sm-10">
+    <input type="file" class="form-control" name="qr">
+  </div>
+</div>

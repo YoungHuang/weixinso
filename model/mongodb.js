@@ -1,6 +1,3 @@
-/**
- * Created by jiesun on 13-12-24.
- */
 var mongoose = require('mongoose');
 
 if(process.env.VCAP_SERVICES){

@@ -1,6 +1,3 @@
-/**
- * Created by jiesun on 14-2-17.
- */
 var fs = require('fs'),
     wxPublicUser = require('./../model/wxPublicUser');
 
@@ -52,7 +49,6 @@ exports.list = function(req, res) {
 };
 
 exports.create = function(req, res) {
-  var date = new Date();
   var logoPath = req.files.logo.path;
   var qrPath = req.files.qr.path;
 
@@ -65,8 +61,7 @@ exports.create = function(req, res) {
     desc: req.body.desc,
     logoPath: logoPath,
     qrPath: qrPath,
-    tags: [req.body.tag1, req.body.tag2, req.body.tag3],
-    createDate: date
+    tags: [req.body.tag1, req.body.tag2, req.body.tag3]
   };
   wxPublicUser.save(user, function(err, wxuser) {
     if (err) {
@@ -103,6 +98,7 @@ exports.delete = function(req, res) {
 
 exports.edit = function(req, res) {
   var id = req.params.id;
+  var page = req.query.p;
 
   wxPublicUser.findOneById(id, function(err, wxuser) {
     if(err){
@@ -111,6 +107,7 @@ exports.edit = function(req, res) {
 
     res.render('wxuser/edit', {
       title: '编辑微信公众号',
+      page: page,
       user: wxuser
     });
   });

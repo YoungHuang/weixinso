@@ -1,15 +1,20 @@
 var mongodb = require('./mongodb'),
-    Schema = mongodb.mongoose.Schema;
+    Schema = mongodb.mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 var postSchema = new Schema({
+	wxId: ObjectId,
 	title: {
 	    type: String,
 	    required: true
 	},
-	content: String,
+	summary: String,
 	link: String,
 	favs:  Number,
-	createDate: Date
+	createDate: { 
+		type: Date, 
+		default: Date.now 
+	}
 });
 
 var Post = mongodb.mongoose.model("Post", postSchema);

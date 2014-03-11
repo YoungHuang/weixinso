@@ -3,6 +3,7 @@
  */
 
 var mongodb = require('./mongodb'),
+    mongoose = mongodb.mongoose,
     Schema = mongodb.mongoose.Schema;
 
 var WxPublicUserSchema = new Schema({
@@ -18,9 +19,12 @@ var WxPublicUserSchema = new Schema({
         required: true
     },
     tags: {type: [String], index: true},
-    createDate: Date
+    createDate: { 
+      type: Date, 
+      default: Date.now 
+    }
 });
-var WxPublicUser = mongodb.mongoose.model("WxPublicUser", WxPublicUserSchema);
+var WxPublicUser = mongoose.model("WxPublicUser", WxPublicUserSchema);
 
 exports.save = function(user, callback){
   var wxPublicUser = new WxPublicUser(user);
