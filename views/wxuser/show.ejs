@@ -24,10 +24,29 @@
     <%- include ../nav %>
     <div class="container">
       <div class="row">
+        <div class="col-md-2">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    公众号管理
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                  <ul class="nav nav-pills nav-stacked">
+                    <a href="../list" class="list-group-item">List</a>
+                    <a href="create" class="list-group-item">Create</a>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-md-1">
           <img class="img-thumbnaid details-logo" alt="default" src="<%= wxPublicUser.logoPath %>">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
           <h3 class="details-title"><%= wxPublicUser.name %></h3>
           <dl class="dl-horizontal">
             <dt>微信名称：</dt>
@@ -36,6 +55,10 @@
           <dl class="dl-horizontal">
             <dt>微信号：</dt>
             <dd><%= wxPublicUser.wxNumber %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>类型：</dt>
+            <dd><%= wxPublicUser.type %></dd>
           </dl>
           <dl class="dl-horizontal">
             <dt>标签：</dt>
@@ -50,7 +73,7 @@
             <dd><%= wxPublicUser.createDate %></dd>
           </dl>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <img class="img-thumbnaid details-code" alt="default" src="<%= wxPublicUser.qrPath %>">
           <p class="code_label">二维码扫描订阅</p>
         </div>

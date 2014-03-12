@@ -23,10 +23,7 @@ module.exports = function(app){
 
   // 创建公众号
   app.get('/wxuser/create', function(req, res) {
-    res.render('wxuser/create', {
-      title: '创建微信公众号',
-      user: {}
-    });
+    wxUser.showCreate(req, res);
   });
   app.post('/wxuser/create', function(req, res) {
     wxUser.create(req, res);

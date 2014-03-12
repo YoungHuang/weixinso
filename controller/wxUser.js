@@ -1,6 +1,8 @@
 var fs = require('fs'),
     wxPublicUser = require('./../model/wxPublicUser');
 
+var types = ['科技', '社会', '娱乐', '财经', '文艺'];
+
 exports.details = function(req, res){
   var id = req.params.id;
   wxPublicUser.findOneById(id, function(err, wxuser){
@@ -12,23 +14,6 @@ exports.details = function(req, res){
       });
     }
   });
-};
-
-exports.generate = function(req, res){
-  var i;
-  for(i=0; i<20; i++){
-    var weixinServer = {};
-    weixinServer.name = '知名疯子';
-    weixinServer.wxNumber = 'gh_c0b973c06195';
-    weixinServer.createDate = '2012-10-09 16:54:34';
-    weixinServer.logoPath = '/upload/logoPicture/123456self.jpg';
-    weixinServer.qrPath = '/upload/qrPicture/123456qr.jpg';
-    weixinServer.tags = ['媒体', '杂文', '']
-    weixinServer.desc = '知名疯子，最好的正能量自媒体平台。由中央电视台《公益的力量》栏目媒体合作负责人小疯子运营。' +
-      '每日分享自己读到看到或者大家推荐的好文、好书、好电影等，偶尔也和你疯言疯语，乐此不彼。';
-    wxPublicUser.save(weixinServer);
-  }
-
 };
 
 exports.list = function(req, res) {
@@ -48,6 +33,14 @@ exports.list = function(req, res) {
   });
 };
 
+exports.showCreate = function(req, res) {
+  res.render('wxuser/create', {
+      title: '创建微信公众号',
+      types: types,
+      user: {}
+  });
+}
+
 exports.create = function(req, res) {
   var logoPath = req.files.logo.path;
   var qrPath = req.files.qr.path;
@@ -58,6 +51,7 @@ exports.create = function(req, res) {
   var user = {
     name: req.body.name,
     wxNumber: req.body.wxNumber,
+    type: req.body.type,
     desc: req.body.desc,
     logoPath: logoPath,
     qrPath: qrPath,
@@ -108,7 +102,8 @@ exports.edit = function(req, res) {
     res.render('wxuser/edit', {
       title: '编辑微信公众号',
       page: page,
-      user: wxuser
+      user: wxuser,
+      types: types
     });
   });
 }
@@ -117,6 +112,7 @@ exports.update = function(req, res) {
   var wxuser = {
     name: req.body.name,
     wxNumber: req.body.wxNumber,
+    type: req.body.type,
     desc: req.body.desc,
     tags: [req.body.tag1, req.body.tag2, req.body.tag3]
   };
@@ -129,6 +125,10 @@ exports.update = function(req, res) {
 }
 
 exports.findAllForIndexPage = function(req, res){
+  wxPublicUser.getByGroup(2, function(err, result) {
+    console.log('111111');
+    console.log(result);
+  });
   wxPublicUser.findAll(function(err, result){
     if(err){
       console.log(err);
@@ -159,3 +159,22 @@ exports.search = function(req, res){
   );
 };
 
+exports.generate = function(req, res){
+  var i;
+  for(i=0; i<20; i++){
+    var weixinServer = {};
+    weixinServer.name = '知名疯子';
+    weixinServer.type = '财经';
+    weixinServer.wxNumber = 'gh_c0b973c06195';
+    weixinServer.createDate = '2012-10-09 16:54:34';
+    weixinServer.logoPath = '/upload/logoPicture/123456self.jpg';
+    weixinServer.qrPath = '/upload/qrPicture/123456qr.jpg';
+    weixinServer.tags = ['媒体', '杂文', '']
+    weixinServer.desc = '知名疯子，最好的正能量自媒体平台。由中央电视台《公益的力量》栏目媒体合作负责人小疯子运营。' +
+      '每日分享自己读到看到或者大家推荐的好文、好书、好电影等，偶尔也和你疯言疯语，乐此不彼。';
+    wxPublicUser.save(weixinServer, function() {
+
+    });
+  }
+
+};

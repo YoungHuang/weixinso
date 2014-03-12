@@ -9,6 +9,7 @@ var mongodb = require('./mongodb'),
 var WxPublicUserSchema = new Schema({
     name: String,
     wxNumber: String,
+    type: String,
     desc: String,
     logoPath: {
         type: String,
@@ -97,3 +98,10 @@ exports.deleteOneById = function(id, callback){
     }
   });
 };
+
+exports.getByGroup = function(limit, callback) {
+  var aggr = WxPublicUser.aggregate().group({
+    _id: "$type"
+  });
+  aggr.exec(callback);
+}
