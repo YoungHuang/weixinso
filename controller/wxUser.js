@@ -124,21 +124,29 @@ exports.update = function(req, res) {
   });
 }
 
-exports.findAllForIndexPage = function(req, res){
-  wxPublicUser.getByGroup(2, function(err, result) {
-    console.log('111111');
-    console.log(result);
-  });
-  wxPublicUser.findAll(function(err, result){
-    if(err){
+exports.index = function(req, res){
+  wxPublicUser.getByGroup(function(err, results) {
+    if (err) {
       console.log(err);
-    }else{
+    } else {
+      var wxUserGroups = {};
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        var type = result._id;
+        var wxUsers = [];
+        if (result.value.wxusers) {
+          wxUsers = result.value.wxusers;
+        } else {
+          wxUsers.push(result.value);
+        }
+        wxUserGroups[type] = wxUsers;
+      }
+
       res.render('index', {
-        wxPublicUsers: result
+        wxUserGroups: wxUserGroups
       });
     }
-   }
-  );
+  });
 };
 
 exports.search = function(req, res){

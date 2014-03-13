@@ -6,7 +6,7 @@ var wxUser = require('./../controller/wxUser');
 
 module.exports = function(app){
   app.get('/', function(req, res){
-    wxUser.findAllForIndexPage(req, res);
+    wxUser.index(req, res);
   });
 
   app.get('/add', function(req, res){

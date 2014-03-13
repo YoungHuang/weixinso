@@ -35,7 +35,6 @@ exports.save = function(user, callback){
       console.log('Save failed');
       callback(err);
     }else{
-      console.log('Save success');
       callback(err, user);
     }
   });
@@ -99,9 +98,23 @@ exports.deleteOneById = function(id, callback){
   });
 };
 
-exports.getByGroup = function(limit, callback) {
-  var aggr = WxPublicUser.aggregate().group({
-    _id: "$type"
+exports.getByGroup = function(callback) {
+  var o = {};
+  o.map = function () { emit(this.type, this) };
+  o.reduce = function(key, values) {
+    var res =[];
+    var len = values.length;
+    if (len > 12) {
+      len = 12;
+    }
+
+    for(var i=0; i < len; i++) {
+      res.push(values[i]);
+    }
+
+    return {wxusers: res};
+  };
+  WxPublicUser.mapReduce(o, function (err, results) {
+    callback(err, results);
   });
-  aggr.exec(callback);
 }

@@ -20,17 +20,26 @@
   <body>
     <%- include nav %>
     <div class="container">
-      <div class="panel panel-default">
+      <% for (var type in wxUserGroups) { 
+          var wxUsers = wxUserGroups[type];
+      %>
+        <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">热门微信公众号</h3>
+            <h3 class="panel-title"><%= type %></h3>
           </div>
           <div class="panel-body para">
+          <%
+            var len = wxUsers.length;
+            if (wxUsers.length > 6) {
+              len = 6;
+            }
+          %>
             <div class="row">
-              <%  var i;
-                  for (i = 0; i < 6; i++) {
-                    var user = wxPublicUsers[i];
-              %>
-              <div class="col-xs-6 col-md-2">
+          <%
+            for (var i = 0; i < len; i++) {
+              var user = wxUsers[i];
+          %>
+              <div class="col-md-2">
                 <div class="thumbnail">
                   <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.logoPath %>">
                   <div class="caption">
@@ -38,15 +47,19 @@
                   </div>
                 </div>
               </div>
-              <% } %>
+          <%
+            }
+          %>
             </div><!--row-->
-            
+          <%
+            if (wxUsers.length > 6) {
+          %>
             <div class="row">
-              <%  var i;
-                  for (i = 6; i < 12; i++) {
-                    var user = wxPublicUsers[i];
-              %>
-              <div class="col-xs-6 col-md-2">
+          <%
+              for (var i = 6; i < wxUsers.length; i++) {
+                var user = wxUsers[i];
+          %>
+              <div class="col-md-2">
                 <div class="thumbnail">
                   <img class="thumb" clcc data-src="holder.js/300x200" alt="default" src="<%= user.logoPath %>">
                   <div class="caption">
@@ -54,10 +67,16 @@
                   </div>
                 </div>
               </div>
-              <% } %>
-            </div><!--row-->
+          <%
+              }
+          %>
+              </div><!--row-->
+          <%
+            }
+          %>
           </div><!--panel-body-->
         </div><!--panel-->
+      <% } %>
     </div><!--container-->
   </body>
 </html>
