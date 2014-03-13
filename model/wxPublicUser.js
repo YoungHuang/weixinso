@@ -84,8 +84,21 @@ exports.findAll = function(callback){
   WxPublicUser.find(callback);
 };
 
-exports.findByName = function(name, callback){
-  WxPublicUser.find(name,callback);
+exports.findByName = function(query, page, count, callback){
+  WxPublicUser.count(query, function(err, total) {
+    if (err) {
+      return callback(err);
+    }
+    WxPublicUser.find(query, null, {
+      skip: (page -1) * count,
+      limit: count
+    }, function(err, wxuserList) {
+      if (err) {
+        return callback(err);
+      }
+      callback(err, wxuserList, total);
+    });
+  });
 };
 
 exports.deleteOneById = function(id, callback){

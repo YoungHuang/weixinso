@@ -150,21 +150,27 @@ exports.index = function(req, res){
 };
 
 exports.search = function(req, res){
-  var name = req.body.keywords.trim();
-  var query={};
-  if(name) {
-    query['name']=new RegExp(name);
+  var keywords = req.query.keywords.trim();
+  var query = {};
+  if(keywords) {
+    query['name'] = new RegExp(keywords);
   }
-  wxPublicUser.findByName(query, function(err, result){
-      if(err){
-        console.log(err);
-      }else{
-        res.render('wxuser/results', {
-          wxPublicUsers: result
-        });
-      }
+
+  var page = req.query.p ? parseInt(req.query.p) : 1;
+  var count = req.query.c ? parseInt(req.query.c) : 12;
+  wxPublicUser.findByName(query, page, count, function(err, wxuserList, total) {
+    if(err){
+      return res.redirect('/');
     }
-  );
+
+    res.render('wxuser/results', {
+        wxUsers: wxuserList,
+        page: page,
+        keywords: keywords,
+        isFirstPage: (page -1) == 0,
+        isLastPage: ((page -1) * count + wxuserList.length) == total
+    });
+  });
 };
 
 exports.generate = function(req, res){

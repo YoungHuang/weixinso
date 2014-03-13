@@ -17,7 +17,7 @@ module.exports = function(app){
     wxUser.details(req, res);
   });
 
-  app.post('/wxuser/search', function(req, res){
+  app.get('/wxuser/search', function(req, res){
     wxUser.search(req, res);
   });
 
