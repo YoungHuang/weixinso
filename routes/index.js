@@ -88,11 +88,11 @@ module.exports = function(app){
     operation.backupDB(req, res);
   });
 
-  app.get('/operation/dbrestore', function(req, res) {
-    res.render('operation/dbrestore', {});
+  app.get('/operation/restoredb', function(req, res) {
+    res.render('operation/restoredb', {});
   });
 
-  app.post('/operation/dbrestore', function(req, res) {
+  app.post('/operation/restoredb', function(req, res) {
     operation.restoreDB(req, res);
   });
 }
