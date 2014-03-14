@@ -1,4 +1,5 @@
 var fs = require('fs'),
+		zlib = require('zlib'),
     wxPublicUser = require('./../model/wxPublicUser');
 
 exports.backupDB = function(req, res) {
@@ -30,4 +31,15 @@ exports.restoreDB = function(req, res) {
 
 	res.set('Content-Type', 'text/plain');
 	res.send("restoreDB complete!");
+};
+
+exports.downloadPics = function(req, res) {
+	var gzip = zlib.createGzip();
+	var inp = fs.createReadStream('pubic/upload');
+	// var out = fs.createWriteStream('pics.gz');
+
+	console.log(fs.existsSync('public/upload'));
+	// inp.pipe(gzip).pipe(out);
+
+	res.send("downloadPics complete!");
 };

@@ -7,6 +7,9 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var config = require('./config');
+var flash = require('connect-flash');
+var MongoStore = require('connect-mongo')(express);
 
 var app = express();
 
@@ -17,9 +20,18 @@ app.set('port', 3000);
 app.use(express.logger('dev'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 app.use(express.json());
 app.use(express.bodyParser({keepExtensions: true, uploadDir: './public/upload'}));
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({
+	secret: config.cookieSecret,
+	cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}, // 30 days
+	store: new MongoStore({
+		url: config.mongourl
+	})
+}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 

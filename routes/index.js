@@ -95,5 +95,9 @@ module.exports = function(app){
   app.post('/operation/restoredb', function(req, res) {
     operation.restoreDB(req, res);
   });
+
+  app.get('/operation/downloadPics', function(req, res) {
+    operation.downloadPics(req, res);
+  });
 }
 
