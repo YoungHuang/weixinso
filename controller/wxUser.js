@@ -1,7 +1,7 @@
 var fs = require('fs'),
     wxPublicUser = require('./../model/wxPublicUser');
 
-var types = ['科技', '社会', '娱乐', '财经', '文艺'];
+var types = ['科技', '社会', '生活', '财经', '文艺'];
 
 exports.details = function(req, res){
   var id = req.params.id;
