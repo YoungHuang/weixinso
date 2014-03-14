@@ -5,14 +5,14 @@ var types = ['科技', '社会', '生活', '财经', '文艺'];
 
 exports.details = function(req, res){
   var id = req.params.id;
-  wxPublicUser.findOneById(id, function(err, wxuser){
-    if(err){
-      console.log(err);
-    }else{
-      res.render('wxuser/details', {
-        wxPublicUser: wxuser
-      });
+  wxPublicUser.findOneById(id, function(err, wxuser) {
+    if(err) {
+      return res.redirect('/');
     }
+    
+    res.render('wxuser/details', {
+      wxPublicUser: wxuser
+    });
   });
 };
 

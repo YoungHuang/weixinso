@@ -2,7 +2,8 @@
 /*
  * GET home page.
  */
-var wxUser = require('./../controller/wxUser');
+var wxUser = require('./../controller/wxUser'),
+    operation = require('./../controller/operation');
 
 module.exports = function(app){
   app.get('/', function(req, res){
@@ -81,6 +82,18 @@ module.exports = function(app){
   // 删除用户
   app.get('/user/delete/:id', function(req, res) {
 
+  });
+
+  app.get('/operation/backupdb', function(req, res) {
+    operation.backupDB(req, res);
+  });
+
+  app.get('/operation/dbrestore', function(req, res) {
+    res.render('operation/dbrestore', {});
+  });
+
+  app.post('/operation/dbrestore', function(req, res) {
+    operation.restoreDB(req, res);
   });
 }
 

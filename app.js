@@ -11,7 +11,9 @@ var path = require('path');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
+// app.set('host', process.env.VMC_APP_HOST);
+// app.set('port', process.env.VCAP_APP_PORT || 1337);
 app.use(express.logger('dev'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -28,6 +30,6 @@ if ('development' == app.get('env')) {
 
 routes(app);
 
-http.createServer(app).listen(app.get('port'),function(){
+http.createServer(app).listen(app.get('port'), app.get('host'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
