@@ -1,0 +1,97 @@
+<%- include ../header %>
+	<style>
+      .details-logo {
+        width: 72px; 
+        height: 72px;
+      }
+      .details-title {
+        margin-left:25px;
+      }
+      .details-code {
+        width: 230px; 
+        height: 230px;
+      }
+      .code_label {
+        margin-left: 55px;
+      }
+      .detail-desc {
+        text-indent: 1em;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <%- include ../nav %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    公众号管理
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                  <ul class="nav nav-pills nav-stacked">
+                    <a href="../list" class="list-group-item">List</a>
+                    <a href="create" class="list-group-item">Create</a>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <img class="img-thumbnaid details-logo" alt="default" src="<%= wxPublicUser.logoPath %>">
+        </div>
+        <div class="col-md-5">
+          <h3 class="details-title"><%= wxPublicUser.name %></h3>
+          <dl class="dl-horizontal">
+            <dt>微信名称：</dt>
+            <dd><%= wxPublicUser.name %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>微信号：</dt>
+            <dd><%= wxPublicUser.wxNumber %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>类型：</dt>
+            <dd><%= wxPublicUser.type %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>标签：</dt>
+            <dd>
+              <span class="label label-default"><%= (wxPublicUser.tags && wxPublicUser.tags[0]) || '' %></span>
+              <span class="label label-primary"><%= (wxPublicUser.tags && wxPublicUser.tags[1]) || '' %></span>
+              <span class="label label-success"><%= (wxPublicUser.tags && wxPublicUser.tags[2]) || '' %></span>
+            </dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>收录时间：</dt>
+            <dd><%= wxPublicUser.createDate %></dd>
+          </dl>
+        </div>
+        <div class="col-md-4">
+          <img class="img-thumbnaid details-code" alt="default" src="<%= wxPublicUser.qrPath %>">
+          <p class="code_label">二维码扫描订阅</p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">微信描述：</h3>
+          </div>
+          <div class="panel-body">
+            <p class="detail-desc">
+                <%= wxPublicUser.desc %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

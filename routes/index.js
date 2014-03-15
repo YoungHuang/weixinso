@@ -4,7 +4,8 @@
  */
 var wxUser = require('../controller/wxUser'),
     operation = require('../controller/operation'),
-    user = require('../controller/user');
+    user = require('../controller/user'),
+    post = require('../controller/post');
 
 module.exports = function(app){
   app.get('/', function(req, res){
@@ -85,6 +86,38 @@ module.exports = function(app){
     user.delete(req, res);
   });
 
+  // 新建文章
+  app.get('/post/create/:wxid', function(req, res) {
+    post.showCreate(req, res);
+  });
+  app.post('/post/create/:wxid', function(req, res) {
+    post.create(req, res);
+  });
+
+  // 文章列表
+  app.get('/post/list', function(req, res) {
+    post.list(req, res);
+  });
+
+  // 文章详情
+  app.get('/post/show/:id', function(req, res) {
+    post.show(req, res);
+  });
+
+  // 编辑文章
+  app.get('/post/edit/:id', function(req, res) {
+    post.edit(req, res);
+  });
+  app.post('/post/edit/:id', function(req, res) {
+    post.update(req, res);
+  });
+
+  // 删除文章
+  app.get('/post/delete/:id', function(req, res) {
+    post.delete(req, res);
+  });
+
+  // 数据管理
   app.get('/operation/backupdb', function(req, res) {
     operation.backupDB(req, res);
   });

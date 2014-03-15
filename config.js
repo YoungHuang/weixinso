@@ -5,7 +5,7 @@ if(process.env.VCAP_SERVICES){
 }
 else{
     var mongo = {
-    "hostname":"192.168.56.102",
+    "hostname":"localhost",
     "port":27017,
     "username":"",
     "password":"",
@@ -31,9 +31,9 @@ var config = {
 	db: 'db',
 	host: 'localhost',
 	mongourl: mongourl,
-  downloadPicsName: 'public/upload.tar',
-  downloadPicsCwd: 'public/upload',
-  downloadPicsDest:'upload'
+    downloadPicsName: 'public/upload.tar',
+    downloadPicsCwd: 'public/upload',
+    downloadPicsDest:'upload'
 }
 
 module.exports = config;
