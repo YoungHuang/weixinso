@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    wxPublicUser = require('./../model/wxPublicUser');
+    wxPublicUser = require('../model/wxPublicUser');
 
 var types = ['科技', '社会', '生活', '财经', '文艺'];
 

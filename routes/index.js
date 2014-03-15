@@ -2,8 +2,9 @@
 /*
  * GET home page.
  */
-var wxUser = require('./../controller/wxUser'),
-    operation = require('./../controller/operation');
+var wxUser = require('../controller/wxUser'),
+    operation = require('../controller/operation'),
+    user = require('../controller/user');
 
 module.exports = function(app){
   app.get('/', function(req, res){
@@ -55,33 +56,33 @@ module.exports = function(app){
 
   // 创建用户
   app.get('/user/create', function(req, res) {
-
+    user.showCreate(req, res);
   });
   app.post('/user/create', function(req, res) {
-    
+    user.create(req, res);
   });
 
   // 用户详情
   app.get('/user/show/:id', function(req, res) {
-
+    user.show(req, res);
   });
 
   // 用户列表
   app.get('/user/list', function(req, res) {
-
+    user.list(req, res);
   });
 
   // 编辑用户
-  app.get('/user/edit', function(req, res) {
-
+  app.get('/user/edit/:id', function(req, res) {
+    user.edit(req, res);
   });
-  app.post('/user/edit', function(req, res) {
-    
+  app.post('/user/edit/:id', function(req, res) {
+    user.update(req, res);
   });
 
   // 删除用户
   app.get('/user/delete/:id', function(req, res) {
-
+    user.delete(req, res);
   });
 
   app.get('/operation/backupdb', function(req, res) {
