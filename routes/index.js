@@ -55,6 +55,14 @@ module.exports = function(app){
     wxUser.update(req, res);
   });
 
+  // 用户登陆
+  app.get('/user/login', function(req, res) {
+    user.showLogin(req, res);
+  });
+  app.post('/user/login', function(req, res) {
+    user.login(req, res);
+  });
+
   // 创建用户
   app.get('/user/create', function(req, res) {
     user.showCreate(req, res);

@@ -36,6 +36,10 @@ exports.findOneById = function(id, callback){
     User.findOne({_id: id}, callback);
 };
 
+exports.findOneByName = function(name, callback){
+    User.findOne({name: name}, callback);
+};
+
 exports.get = function(page, count, callback) {
   User.count({}, function(err, total) {
     if (err) {

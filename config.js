@@ -33,7 +33,7 @@ var generate_mongo_url = function(obj){
 }
 var mongourl = generate_mongo_url(mongo);
 
-var host = 'localhost';
+var host = '192.168.56.101';
 if (process.env.VMC_APP_HOST) {
     host = process.env.VMC_APP_HOST;
 } else if(process.env.IP) {

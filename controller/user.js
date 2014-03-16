@@ -3,6 +3,32 @@ var crypto = require('crypto'),
 
 var roles = ['admin', 'normal'];
 
+exports.showLogin = function(req, res) {
+  res.render('user/login', { });
+}
+
+exports.login = function(req, res) {
+  var name = req.body.name,
+      password = req.body.password;
+
+  var md5 = crypto.createHash('md5');
+  password = md5.update(password).digest('hex');
+
+  userModel.findOneByName(name, function(err, user) {
+    if (err) {
+      req.flash('error', '用户不存在！');
+      return res.redirect('user/login');
+    }
+    if (user.password != password) {
+      req.flash('error', '密码错误！');
+      return res.redirect('user/login');
+    }
+    req.session.user = user;
+    req.flash('success', '登陆成功！');
+    res.redirect('/');
+  });
+}
+
 exports.showCreate = function(req, res) {
   res.render('user/create', {
       title: '创建用户',
