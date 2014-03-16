@@ -39,3 +39,43 @@ exports.save = function(post, callback){
     }
   });
 };
+
+exports.findOneById = function(id, callback){
+    Post.findOne({_id: id}, callback);
+};
+
+exports.get = function(page, count, callback) {
+  Post.count({}, function(err, total) {
+    if (err) {
+      return callback(err);
+    }
+    Post.find({}, null, {
+      skip: (page -1) * count,
+      limit: count
+    }, function(err, postList) {
+      if (err) {
+        return callback(err);
+      }
+      callback(err, postList, total);
+    });
+  });
+};
+
+exports.update = function(id, post, callback) {
+  Post.update({
+    _id: id
+  }, {
+    $set : {
+      title: post.title,
+      link: post.link,
+      summary: post.summary,
+      tags: post.tags
+    }
+  }, function(err, post) {
+    if(err){
+      callback(err);
+    } else{
+      callback(err, post);
+    }
+  });
+};

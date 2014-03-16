@@ -35,3 +35,66 @@ exports.create = function(req, res) {
     });
   });
 };
+
+exports.show = function(req, res) {
+  var id = req.params.id;
+
+  postModel.findOneById(id, function(err, post) {
+    if(err){
+      return res.redirect('/post/list');
+    }
+
+    res.render('post/show', {
+      post: post
+    });
+  });
+};
+
+exports.list = function(req, res) {
+  var page = req.query.p ? parseInt(req.query.p) : 1;
+  var count = req.query.c ? parseInt(req.query.c) : 10;
+  postModel.get(page, count, function(err, postList, total) {
+    if(err){
+      return res.redirect('/');
+    }
+
+    res.render('post/list', {
+        posts: postList,
+        page: page,
+        isFirstPage: (page -1) == 0,
+        isLastPage: ((page -1) * count + postList.length) == total
+    });
+  });
+};
+
+exports.edit = function(req, res) {
+  var id = req.params.id;
+  var page = req.query.p;
+
+  postModel.findOneById(id, function(err, post) {
+    if(err){
+      return res.redirect('/post/list');
+    }
+
+    res.render('post/edit', {
+      title: '编辑文章',
+      page: page,
+      post: post
+    });
+  });
+}
+
+exports.update = function(req, res) {
+  var post = {
+    title: req.body.title,
+    link: req.body.link,
+    summary: req.body.summary,
+    tags: [req.body.tag1, req.body.tag2, req.body.tag3]
+  };
+  postModel.update(req.params.id, post, function(err, post) {
+    if(err){
+      return res.redirect('/post/list');
+    }
+    res.redirect('/post/show/' + req.params.id);
+  });
+}

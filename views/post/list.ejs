@@ -11,7 +11,7 @@
     <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">微信公众号</h3>
+            <h3 class="panel-title">文章管理</h3>
           </div>
           <div class="panel-body para">
             <div class="row">
@@ -21,14 +21,13 @@
                     <div class="panel-heading">
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                          公众号管理
+                          文章管理
                         </a>
                       </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <ul class="nav nav-pills nav-stacked">
                           <a href="#" class="list-group-item active">List</a>
-                          <a href="create" class="list-group-item">Create</a>
                         </ul>
                     </div>
                   </div>
@@ -38,17 +37,17 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>微信号</th>
+                      <th>标题</th>
                       <th>操作</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% wxusers.forEach(function (wxuser, index) { %>
+                    <% posts.forEach(function (post, index) { %>
                       <tr>
-                        <td><%= wxuser.name %></td>
+                        <td><%= post.title %></td>
                         <td>
-                          <a href="edit/<%= wxuser._id %>?p=<%= page %>" class="btn btn-primary btn-sm" role="button">Edit</a>
-                          <a href="delete/<%= wxuser._id %>?p=<%= page %>" class="btn btn-danger btn-sm" role="button" onclick="return confirm('确认删除？')">Delete</a>
+                          <a href="edit/<%= post._id %>?p=<%= page %>" class="btn btn-primary btn-sm" role="button">Edit</a>
+                          <a href="delete/<%= post._id %>?p=<%= page %>" class="btn btn-danger btn-sm" role="button" onclick="return confirm('确认删除？')">Delete</a>
                         </td>
                       </tr>
                     <% }) %>
