@@ -142,7 +142,7 @@ exports.index = function(req, res){
         wxUserGroups[type] = wxUsers;
       }
 
-      res.render('index', {
+      res.render('wxuser/index', {
         wxUserGroups: wxUserGroups
       });
     }
