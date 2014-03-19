@@ -5,7 +5,7 @@ if(process.env.VCAP_SERVICES){
 }
 else{
     var mongo = {
-    "hostname":"localhost",
+    "hostname":"192.168.56.102",
     "port":27017,
     "username":"",
     "password":"",
@@ -26,9 +26,15 @@ var generate_mongo_url = function(obj){
 }
 var mongourl = generate_mongo_url(mongo);
 
-module.exports = {
+var config = {
 	cookieSecret: 'wx',
 	db: 'db',
 	host: 'localhost',
-	mongourl: mongourl
+	mongourl: mongourl,
+  downloadPicsName: 'public/upload.tar',
+  downloadPicsCwd: 'public/upload',
+  downloadPicsDest:'upload'
 }
+
+module.exports = config;
+module.exports.config = config;

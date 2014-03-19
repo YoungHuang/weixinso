@@ -1,6 +1,7 @@
 var fs = require('fs'),
-		zlib = require('zlib'),
-    wxPublicUser = require('./../model/wxPublicUser');
+    archiver = require('archiver'),
+    wxPublicUser = require('./../model/wxPublicUser'),
+    config = require('../config');;
 
 exports.backupDB = function(req, res) {
 	wxPublicUser.findAll(function(err, results) {
@@ -34,12 +35,17 @@ exports.restoreDB = function(req, res) {
 };
 
 exports.downloadPics = function(req, res) {
-	var gzip = zlib.createGzip();
-	var inp = fs.createReadStream('pubic/upload');
-	// var out = fs.createWriteStream('pics.gz');
-
-	console.log(fs.existsSync('public/upload'));
-	// inp.pipe(gzip).pipe(out);
-
-	res.send("downloadPics complete!");
+  var output = fs.createWriteStream(config.downloadPicsName);
+  var archive = archiver.create('tar');
+  output.on('close', function () {
+    res.send("downloadPics complete!");
+  });
+  archive.on('error', function(err){
+    throw err;
+  });
+  archive.pipe(output);
+  archive.bulk([
+    { expand: true, cwd: config.downloadPicsCwd, src: ['**'], dest: config.downloadPicsDest}
+  ]);
+  archive.finalize();
 };
