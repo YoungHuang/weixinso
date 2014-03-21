@@ -1,9 +1,16 @@
 if(process.env.VCAP_SERVICES){
-	console.log(process.env.VCAP_SERVICES);
     var env = JSON.parse(process.env.VCAP_SERVICES);
     var mongo = env['mongodb2-2.4.8'][0]['credentials'];
-}
-else{
+} else if(process.env.IP) {
+    var mongo = {
+    "hostname":process.env.IP,
+    "port":27017,
+    "username":"",
+    "password":"",
+    "name":"",
+    "db":"db"
+    }
+} else{
     var mongo = {
     "hostname":"localhost",
     "port":27017,
@@ -26,10 +33,25 @@ var generate_mongo_url = function(obj){
 }
 var mongourl = generate_mongo_url(mongo);
 
+var host = 'localhost';
+if (process.env.VMC_APP_HOST) {
+    host = process.env.VMC_APP_HOST;
+} else if(process.env.IP) {
+    host = process.env.IP;
+}
+
+var port = 3000;
+if (process.env.VCAP_APP_PORT) {
+    port = process.env.VCAP_APP_PORT;
+} else if(process.env.PORT) {
+    port = process.env.PORT;
+}
+
 var config = {
 	cookieSecret: 'wx',
 	db: 'db',
-	host: 'localhost',
+	host: host,
+	port: port,
 	mongourl: mongourl,
     downloadPicsName: 'public/upload.tar',
     downloadPicsCwd: 'public/upload',

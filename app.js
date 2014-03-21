@@ -14,9 +14,8 @@ var MongoStore = require('connect-mongo')(express);
 var app = express();
 
 // all environments
-app.set('port', 3000);
-// app.set('host', process.env.VMC_APP_HOST);
-// app.set('port', process.env.VCAP_APP_PORT || 1337);
+app.set('host', config.host);
+app.set('port', config.port);
 app.use(express.logger('dev'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
