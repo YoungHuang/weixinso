@@ -52,7 +52,7 @@ exports.create = function(req, res) {
 
   var user = {
     name: req.body.name,
-    password: req.body.password,
+    password: password,
     role: req.body.role
   };
   userModel.save(user, function(err, user) {

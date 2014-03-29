@@ -9,7 +9,7 @@ var wxUser = require('../controller/wxUser'),
 
 module.exports = function(app){
   app.get('/', function(req, res){
-    wxUser.index(req, res);
+    wxUser.index2(req, res);
   });
 
   app.get('/add', checkAdmin);
@@ -84,7 +84,7 @@ module.exports = function(app){
   app.get('/user/create', function(req, res) {
     user.showCreate(req, res);
   });
-  app.post('/user/create', checkAdmin);
+  //app.post('/user/create', checkAdmin);
   app.post('/user/create', function(req, res) {
     user.create(req, res);
   });

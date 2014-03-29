@@ -149,6 +149,31 @@ exports.index = function(req, res){
   });
 };
 
+exports.index2 = function(req, res){
+  wxPublicUser.getByGroup(function(err, results) {
+    if (err) {
+      console.log(err);
+    } else {
+      var wxUserGroups = {};
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        var type = result._id;
+        var wxUsers = [];
+        if (result.value.wxusers) {
+          wxUsers = result.value.wxusers;
+        } else {
+          wxUsers.push(result.value);
+        }
+        wxUserGroups[type] = wxUsers;
+      }
+
+      res.render('index', {
+        wxUserGroups: wxUserGroups
+      });
+    }
+  });
+};
+
 exports.search = function(req, res){
   var keywords = req.query.keywords.trim();
   var query = {};
